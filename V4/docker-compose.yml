@@ -1,0 +1,21 @@
+services:
+  wixi-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+      args:
+        - VITE_API_BASE_URL=https://api-worklines.wixisoftware.com
+        - VITE_API_URL=https://api-worklines.wixisoftware.com/api
+    ports:
+      - "5500:5500"
+    restart: unless-stopped
+    container_name: wixi-frontend
+    networks:
+      - default
+      - nginx_proxy
+
+networks:
+  nginx_proxy:
+    external: true
+    name: 02_nginx_default
+
