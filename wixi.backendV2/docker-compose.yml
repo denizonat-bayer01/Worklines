@@ -1,0 +1,55 @@
+services:
+  # Development Environment
+  wixi-api-v2-dev:
+    build:
+      context: ..
+      dockerfile: wixi.backendV2/wixi.WebAPI/Dockerfile
+    container_name: wixi-worklines-v2-dev
+    ports:
+      - "5045:5045"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5045
+      - ConnectionStrings__DefaultConnection=Server=78.188.86.124,1533;Database=wixi-worklines-V2;User Id=worklines;Password=worklines02.;TrustServerCertificate=True;
+    volumes:
+      - ./wixi.WebAPI/Logs:/app/Logs
+      - ./wixi.WebAPI/wwwroot:/app/wwwroot
+    networks:
+      - wixi-v2-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5045/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Production Environment
+  wixi-api-v2-prod:
+    build:
+      context: ..
+      dockerfile: wixi.backendV2/wixi.WebAPI/Dockerfile
+    container_name: wixi-worklines-v2-prod
+    ports:
+      - "5115:5115"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5115
+      - ConnectionStrings__DefaultConnection=Server=78.188.86.124,1533;Database=wixi-worklines-V2;User Id=worklines;Password=worklines02.;TrustServerCertificate=True;
+    volumes:
+      - ./wixi.WebAPI/Logs:/app/Logs
+      - ./wixi.WebAPI/wwwroot:/app/wwwroot
+    networks:
+      - wixi-v2-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5115/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  wixi-v2-network:
+    driver: bridge
+
