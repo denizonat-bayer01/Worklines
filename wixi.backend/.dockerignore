@@ -1,0 +1,16 @@
+**/.dockerignore
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/*.*proj.user
+**/bin
+**/obj
+**/Logs
+**/publish
+**/appsettings.Development.json
+**/appsettings.Local.json
+**/*.md
+**/docker-compose*
+**/.DS_Store
+**/Thumbs.db

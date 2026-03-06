@@ -1,0 +1,47 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Build artifacts
+publish/
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Logs
+Logs/
+*.txt
+
+# NuGet Packages
+*.nupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET Core
+project.assets.json
+project.nuget.cache
+**/Properties/launchSettings.json
+
+# Environment
+appsettings.Local.json
+appsettings.*.Local.json
+
+# OS
+.DS_Store
+Thumbs.db
+

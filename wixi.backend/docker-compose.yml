@@ -1,0 +1,54 @@
+services:
+  # Development Environment
+  wixi-api-dev:
+    build:
+      context: .
+      dockerfile: wixi.WebAPI/Dockerfile
+    container_name: wixi-worklines-dev
+    ports:
+      - "5048:5048"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5048
+      - ConnectionStrings__DefaultConnection=Server=78.188.86.124,1533;Database=wixi-worklinesde;User Id=worklines;Password=worklines02.;TrustServerCertificate=True;
+    volumes:
+      - ./wixi.WebAPI/Logs:/app/Logs
+      - ./wixi.WebAPI/wwwroot:/app/wwwroot
+    networks:
+      - wixi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5048/swagger/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Production Environment
+  wixi-api-prod:
+    build:
+      context: .
+      dockerfile: wixi.WebAPI/Dockerfile
+    container_name: wixi-worklines-prod
+    ports:
+      - "5045:5045"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5045
+      - ConnectionStrings__DefaultConnection=Server=78.188.86.124,1533;Database=wixi-worklinesde;User Id=worklines;Password=worklines02.;TrustServerCertificate=True;
+    volumes:
+      - ./wixi.WebAPI/Logs:/app/Logs
+      - ./wixi.WebAPI/wwwroot:/app/wwwroot
+    networks:
+      - wixi-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5045/swagger/index.html"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  wixi-network:
+    driver: bridge
