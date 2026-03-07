@@ -8,7 +8,6 @@
 
 1. [Mevcut Mimari](#mevcut-mimari)
 2. [Güçlü Yönler](#güçlü-yönler)
-3. [Eksik Sistemler](#eksik-sistemler)
 4. [Öncelikli Geliştirmeler](#öncelikli-geliştirmeler)
 5. [Roadmap](#roadmap)
 6. [Teknoloji Stack](#teknoloji-stack)
